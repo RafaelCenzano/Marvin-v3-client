@@ -8,7 +8,6 @@ from webbrowser import open as webopen # webbrowser to open websites
 from marvin.api import ApiService # classes to handle api work
 from marvin.misc import openCalculator, openStopwatch # functions to open Gui
 from marvin.timer import TimerService # functions to run a threaded timer
-from marvin.webscrape import TomatoeScrape, YoutubeScrape, DefinitionFind # import webscrape functions
 from marvin.send_email import Email, EmailService # import email classes
 from marvin.essentials import speak, commandInput, splitJoin # import speak and listen
 import random
@@ -33,70 +32,71 @@ command_list = ['open reddit', 'open subreddit', 'define', 'what is the definiti
 
 class MarvinCommands(Exception): pass # class to choose different input type
 class MarvinRelog(Exception): pass # class to restart main loop to login
-def dataCommands(command, type_of_input, pass_path, contact_path, correction_path, os_type, speak_type):
+def dataCommands(command_input, type_of_input, pass_path, contact_path, correction_path, os_type, speak_type):
 
     bob = False
+    command = command_input.split(' ')
 
     # Website Commands #
 
-    if 'open reddit' in command or 'open subreddit' in command:
+    if 'reddit' in command or 'subreddit' in command:
         subreddit = splitJoin(command, 2) # function to split and rejoin command
         speak('Opening subreddit ' + subreddit + ' for you', speak_type) # saying the subreddit page
         webopen('https://www.reddit.com/r/' + subreddit, new = 2) # open url in browser
         print('Done!')
 
-    elif 'open google sheets' == command:
+    elif 'google' in command and 'sheets' in command:
         speak('Opening Google Sheets for you', speak_type) # saying what it will open twitter
         webopen('https://docs.google.com/spreadsheets/u/0/', new = 2) # open url in browser
         print('Done!')
-        
-    elif 'open google docs' == command:
+
+    elif 'google' in command and 'docs' in command:
         speak('Opening Google Docs for you', speak_type) # saying what it will open twitter
         webopen('https://docs.google.com/document/u/0/', new = 2) # open url in browser
         print('Done!')
-        
-    elif 'google' in command:
+
+    elif 'google' in command or 'google' in command and 'search' in command:
         gsearch = splitJoin(command, 1) # function to split and rejoin command
         speak('Opening Google search for ' + gsearch, speak_type) # saying what it will open
         url = ('https://www.google.com/search?q=' + gsearch + '&rlz=1C5CHFA_enUS770US770&oq=' + gsearch + '&aqs=chrome..69i57.1173j0j8&sourceid=chrome&ie=UTF-8') # url with search
         webopen(url, new = 2) # open url in browser
         print('Done!')
 
-    elif 'open twitter' == command:
+    elif 'open' in command and 'twitter' in command:
         speak('Opening Twitter for you', speak_type) # saying what it will open twitter
         webopen('https://twitter.com/', new = 2) # open url in browser
         print('Done!')
-        
-    elif 'open facebook' == command:
+
+    elif 'open' in command and 'facebook' in command:
         speak('Opening Facebook for you', speak_type) # saying what it will open twitter
         webopen('https://www.facebook.com/', new = 2) # open url in browser
         print('Done!')
-        
-    elif 'open github' == command:
+
+    elif 'open' in command and 'github' in command:
         speak('Opening Github for you', speak_type) # saying what it will open twitter
         webopen('https://github.com/', new = 2) # open url in browser
         print('Done!')
-        
-    elif 'open stack overflow' == command:
+
+    elif 'open' in command and 'stack' in command and 'overflow' in command:
         speak('Opening Stack Overflow for you', speak_type) # saying what it will open twitter
         webopen('https://stackoverflow.com/', new = 2) # open url in browser
         print('Done!')
-        
-    elif 'where is' in command:
+
+    elif 'where' in command and 'is' in command:
         location = splitJoin(command, 2) # function to split and rejoin command
         speak('Hold on, I will show you where ' + location + ' is.', speak_type) # saying the location heard
         url = ('https://www.google.nl/maps/place/' + location + '/&amp;') # url with location
         webopen(url, new = 2) # open url in browser
         print('Done!')
 
-    elif 'amazon' in command:
+    elif 'open' in command and 'amazon' in command:
         amazon = splitJoin(command, 1) # function to split and rejoin command
         speak('Searching amazon for ' + amazon, speak_type) # saying what it will look for
         url = ('https://www.amazon.com/s/ref=nb_sb_noss_2?url=search-alias%3Daps&field-keywords=' + amazon) # url with amazon search
         webopen(url, new = 2) # open in browser
         print('Done!')
 
-    elif 'time in' in command:
+    elif 'in' in command or 'at' in command and 'time' in command:
         time_in = splitJoin(command, 1) # function to split and rejoin command
         speak('Showing time in '+ time_in, speak_type) # saying what its opening
         url = ('https://time.is/' + time_in) # url to time.is with the location
@@ -105,77 +105,60 @@ def dataCommands(command, type_of_input, pass_path, contact_path, correction_pat
 
     # Marvin Webscrape Commands #
 
-    elif 'rotten tomatoes' in command:
+    elif 'rotten' in command and 'tomatoes' in command:
         TomatoeScrape = TomatoeScrape(speak_type, command, 1)
         TomatoeScrape.scrapeRottentomatoes()
 
     elif 'imdb' in command:
-        if 'imdb rating' in command:
-            num_type = 2
-        elif 'imdb' in command:
-            num_type = 1
         TomatoeScrape = TomatoeScrape(speak_type, command, num_type)
         TomatoeScrape.IMDb()
 
     elif 'youtube' in command:
-        if 'search youtube' in command:
-            num_type = 2
-        elif 'play in youtube' in commands:
-            num_type = 3
-        elif 'youtube' in command:
-            num_type = 1
         Youtube_Scrape = YoutubeScrape(speak_type, command, num_type)
         Youtube_Scrape.scrapeYoutube() # function to scrape urls
 
-    elif 'define' in command or 'what is the definition of' in command:
-        if 'what is the definition of' in command:
-            num_type = 5
-        elif 'define' in command:
-            num_type = 1
-        Definition_Find = DefinitionFind(speak_type, command, num_type)
-        Definition_Find.scrapeDefinition() # function to scrape urls
+    elif 'define' in command or 'definition' in command:
+        definition = 'test'
+        Definition_Find = ApiService(speak_type)
+        Definition_Find.defineAPI(definition)
 
     # Marvin Api Commands #
 
-    elif 'full random taco' == command:
+elif 'full' in command and 'taco' in command:
         Api_Service = ApiService(speak_type)
         Api_Service.tacoFullRand()
         Api_Service.dataTaco()
 
-    elif 'random taco' == command:
+    elif 'random' in command and 'taco' in command:
         Api_Service = ApiService(speak_type)
         Api_Service.tacoFullRand()
         Api_Service.dataTaco()
 
     # Marvin Function Commands #
 
-    elif 'standby' in command:
-        speak('Going on standby', speak_type)
-        raise MarvinCommands # raise exeption so class passes and restarts loop
+elif 'standby' in command or 'stop' in command and 'listening' in command:
+        speak('Going on standby until you type marvin', speak_type)
+        while True:
+            standby = input('>')
+            if 'marvin' in standby.lower():
+                speak('Leaving standby', speak_type)
+                break
 
-    elif command == 'exit' or command == 'quit' or command == 'leave' or command == 'close' or command == 'shutdown' or command == 'shut down':
+    elif 'exit' in command or 'quit' in command or 'leave' in command or 'close' in command or 'shutdown' in command or 'shut down'in command:
         speak('Shutting down', speak_type)
         exit() # leave program
 
-    elif command == 'relog' or command == 'logout':
+    elif 'relog' in command or 'logout' in command or 'relogin' in command:
         speak('logging out', speak_type)
         raise MarvinRelog
 
-    elif command == 'ls' or command == 'dir':
-        if os_type == 'Linux':
-            system('ls')
-        elif os_type == 'Darwin':
-            system('ls')
-        elif os_type == 'Windows':
-            system('dir')
-
     # Sending based Commands
 
-    elif command == 'contact list' or command == 'contacts':
+elif 'contact' in command and 'list' in command or 'contacts' in command:
         ContactService = marvin.contacts.ContactShow(contact_path, 0, speak_type)
         ContactService.contactList()
 
-    elif command == 'delete contact' or command == 'remove contact':
+    elif 'contact' in command 'delete' in command or 'remove' in command:
         try:
             ContactService = marvin.contacts.ContactShow(contact_path, 1, speak_type)
             ContactService.contactList()
@@ -185,7 +168,7 @@ def dataCommands(command, type_of_input, pass_path, contact_path, correction_pat
             if 'quit' == delete_contact.lower() or 'exit' == delete_contact.lower() or 'cancel' == delete_contact.lower(): raise ValueError # check message for cancel
             with open(contact_path, 'r') as contact_del_list:
                 del_contact_data = load(contact_del_list)
-            if delete_contact.lower() not in del_contact_data['contacts']: 
+            if delete_contact.lower() not in del_contact_data['contacts']:
                 print('User does not exist')
                 raise ValueError
             del del_contact_data['contacts'][delete_contact]
@@ -195,7 +178,7 @@ def dataCommands(command, type_of_input, pass_path, contact_path, correction_pat
         except Exception as e:
             print('Cancelling')
 
-    elif command == 'add contact' or command == 'new contact':
+    elif 'contact' in command 'new' in command or 'add' in command or 'create' in command:
         try:
             ContactService = marvin.contacts.ContactShow(contact_path, 1, speak_type)
             ContactService.contactList()
@@ -229,7 +212,7 @@ def dataCommands(command, type_of_input, pass_path, contact_path, correction_pat
         except Exception as e:
             print('Cancelling')
 
-    elif command == 'send email':
+    elif 'email' in command and 'draft' in command or 'send' in command or 'create' in command:
         try:
             ContactService = marvin.contacts.ContactShow(contact_path, 'email', speak_type)
             ContactService.contactList()
@@ -281,10 +264,10 @@ def dataCommands(command, type_of_input, pass_path, contact_path, correction_pat
         thread_stopwatch = Thread(target = openStopwatch) # run calculator code from calculator.py
         print('Stopwatch Opened!') # open message
         thread_stopwatch.start() # start 2nd thread with calulator so you can run commands along with the calculator open
-    
+
     # Help commands
 
-    elif command == 'help':
+    elif 'help' in command:
         for c in command_list:
             print(c)
 
@@ -313,13 +296,14 @@ def dataCommands(command, type_of_input, pass_path, contact_path, correction_pat
 
 # Marvin Interaction
 
-    elif command == 'hello' or command == 'hi':
+    elif 'hello' in command or 'hi' in command:
         speak('Hello!', speak_type)
 
-    elif command == 'who are you':
+    elif 'who' in command and 'are' in command and 'you' in command:
         speak('I\'m Marvin a virtual assistant created by Rafael Cenzano to make everyday life better and easier', speak_type)
 
     else:
+        command = command_list
         with open(correction_path, 'r') as check_correction:
             correction_check = load(check_correction)
         if command in correction_check['corrections']:
@@ -332,6 +316,7 @@ def dataCommands(command, type_of_input, pass_path, contact_path, correction_pat
     if bob == False:
         return 'null'
     elif bob == True:
+        command = command_list
         auto_corrected_list = get_close_matches(command, command_list, 1)
         if auto_corrected_list != []:
             auto_corrected = auto_corrected_list[0]
@@ -351,7 +336,10 @@ def dataCommands(command, type_of_input, pass_path, contact_path, correction_pat
                         dump(correction_check, outfile)
                     return auto_corrected
             else:
-                print('Command not found')
+                print('Is this a fact you would like to save for later?')
+                new_fact = input('>')
+                if 'y' in new_fact:
+                    pass # create new file
                 return 'null'
         else:
             print('Command not found')
