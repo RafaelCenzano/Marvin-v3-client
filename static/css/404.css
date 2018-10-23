@@ -1,0 +1,22 @@
+body {
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.center {
+    text-align: center;
+}
+
+h1 {
+    color: #e51b1b;
+    font-size: 5vw;
+}
+
+div {
+    background-color: #1ec9d8;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 2.5vw;
+}
