@@ -8,7 +8,11 @@ app = Flask(__name__, template_folder='templates')# declare flask app and point 
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return render_template('404.html'), 404
+    return redirect("/404_not_found", code=302) # redirect to /404_not_found
+
+@app.route('/404_not_found', methods=['GET'])
+def not_found():
+    return render_template('404.html')
 
 @app.route('/', methods=['GET']) # home route
 def index():
