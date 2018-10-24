@@ -8,18 +8,14 @@
 
   <!--Style Sheets-->
   <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/lib/bootstrap.min.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/404.css') }}" />
 
 </head>
 <body>
 
-  <h1 class="center">Marvin couldn't find that page</h1>
-  <center><button class="button"><a href="/dashboard"><span>Return to Dashboard </span></a></button></center>
+  <h1 class="text-center">Marvin couldn't find that page</h1></div>
 
-
-  <!--JavaScript Files-->
-  <script src="{{url_for('static', filename='js/lib/bootstrap.min.js')}}"></script>
-  <script src="{{url_for('static', filename='js/lib/jquery.min.js')}}"></script>
+  <a href="/dashboard" class="redirect-button">Return to Dashboard</a></div>
 
 </body>
 </html>
