@@ -1,23 +1,25 @@
 <!--404 page of app -->
 <!DOCTYPE html>
 <html>
-
 <head>
 
+  <!--Title-->
   <title>MARVIN 404</title>
 
+  <!--Style Sheets-->
   <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/lib/bootstrap.min.css') }}" />
-  <script src="{{url_for('static', filename='js/lib/bootstrap.min.js')}}"></script>
-  <script src="{{url_for('static', filename='js/lib/jquery.min.js.js')}}"></script>
 
 </head>
-
 <body>
 
   <h1 class="center">Marvin couldn't find that page</h1>
   <center><button class="button"><a href="/dashboard"><span>Return to Dashboard </span></a></button></center>
 
-</body>
 
+  <!--JavaScript Files-->
+  <script src="{{url_for('static', filename='js/lib/bootstrap.min.js')}}"></script>
+  <script src="{{url_for('static', filename='js/lib/jquery.min.js')}}"></script>
+
+</body>
 </html>
