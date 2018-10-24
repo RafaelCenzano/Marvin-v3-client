@@ -1,1 +1,3 @@
-All the css for the Marvin gui
+Directory to hold all css code for UI
+
+lib contains bootstrap css
