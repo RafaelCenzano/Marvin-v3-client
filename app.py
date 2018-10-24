@@ -12,7 +12,7 @@ def page_not_found(e):
 
 @app.route('/404_not_found', methods=['GET'])
 def not_found():
-    return render_template('404.html')
+    return render_template('not_found.html')
 
 @app.route('/', methods=['GET']) # home route
 def index():
