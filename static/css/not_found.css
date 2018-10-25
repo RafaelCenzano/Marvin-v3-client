@@ -2,12 +2,17 @@ body {
   font-family: 'Ubuntu', sans-serif;
 }
 
+h1 {
+  color: #e8172f;
+  text-align: center;
+}
+
 .wrap {
   position: absolute;
   top: 50%;
   left: 50%;
-  margin-top: -86px;
-  margin-left: -89px;
+  margin-top: -5.375rem;
+  margin-left: -5.563rem;
   text-align: center;
 }
 
@@ -18,19 +23,19 @@ a {
   -o-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
   transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
   display: block;
-  margin: 20px auto;
-  max-width: 180px;
+  margin: 1.25rem auto;
+  max-width: 10rem;
   text-decoration: none;
-  border-radius: 4px;
-  padding: 20px 30px;
+  border-radius: 0.25rem;
+  padding: 1.25rem 1.875rem;
 }
 
 a.redirect-button {
   color: rgba(30, 22, 54, 0.6);
-  box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
+  box-shadow: rgba(30, 22, 54, 0.4) 0 0rem 0rem 0.125rem inset;
 }
 
 a.redirect-button:hover {
   color: rgba(255, 255, 255, 0.85);
-  box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;
+  box-shadow: rgba(30, 22, 54, 0.7) 0 0rem 0rem 2.5rem inset;
 }
