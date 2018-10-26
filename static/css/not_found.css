@@ -1,9 +1,14 @@
 body {
   font-family: 'Ubuntu', sans-serif;
+  background-color: rgba(180, 182, 185, 1);
 }
 
 h1 {
   color: #e8172f;
+  font-size: 5rem;
+}
+
+.text-center {
   text-align: center;
 }
 
@@ -13,7 +18,6 @@ h1 {
   left: 50%;
   margin-top: -5.375rem;
   margin-left: -5.563rem;
-  text-align: center;
 }
 
 a {
@@ -24,18 +28,18 @@ a {
   transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
   display: block;
   margin: 1.25rem auto;
-  max-width: 10rem;
+  max-width: 11rem;
   text-decoration: none;
   border-radius: 0.25rem;
   padding: 1.25rem 1.875rem;
 }
 
 a.redirect-button {
-  color: rgba(30, 22, 54, 0.6);
-  box-shadow: rgba(30, 22, 54, 0.4) 0 0rem 0rem 0.125rem inset;
+  color: rgba(14, 32, 125, 0.6);
+  box-shadow: rgba(14, 32, 125, 0.4) 0 0rem 0rem 0.125rem inset;
 }
 
 a.redirect-button:hover {
-  color: rgba(255, 255, 255, 0.85);
-  box-shadow: rgba(30, 22, 54, 0.7) 0 0rem 0rem 2.5rem inset;
+  color: rgba(52, 190, 49, 0.85);
+  box-shadow: rgba(14, 32, 125, 0.7) 0 0rem 0rem 2.5rem inset;
 }
