@@ -19,7 +19,7 @@ def not_found():
 @app.route('/marvin', methods=['GET']) # dashboard route
 @app.route('/dashboards', methods=['GET']) # dashboard route
 def dashboardRedirect():
-    return redirect("/dashboard", code=302) # redirect to /404_not_found
+    return redirect("/dashboard", code=302) # redirect to /dashboard
 
 @app.route('/dashboard', methods=['GET']) # dashboard route
 def dashboard():
