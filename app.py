@@ -24,3 +24,6 @@ def dashboardRedirect():
 @app.route('/dashboard', methods=['GET']) # dashboard route
 def dashboard():
     return render_template('dashboard.html') # render dashboard.html for UI
+
+if __name__ == '__main__':
+    app.run(debug=True)
