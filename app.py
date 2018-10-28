@@ -19,6 +19,10 @@ def page_not_found(e):
 def dashboardRedirect():
     return redirect("/dashboard", code=302) # redirect to /dashboard
 
+@app.route('/email', methods=['GET']) # dashboard route
+def emailRedirect():
+    return redirect("/dashboard", code=302) # redirect to /dashboard
+
 # Main Routes
 
 @app.route('/dashboard', methods=['GET']) # dashboard route
@@ -26,7 +30,7 @@ def dashboard():
     return render_template('dashboard.html') # render dashboard.html for UI
 
 @app.route('/sendemail', methods=['GET']) # dashboard route
-def dashboard():
+def sendemail():
         return render_template('dashboard.html') # render dashboard.html for UI
 
 # Misc Routes
