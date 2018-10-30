@@ -1,11 +1,17 @@
 #Imports
-from os import path
+from os import path, mkdir
 from os import system as terminal
 import json
 
 if __name__ == '__main__' and path.isfile('app.py') and path.isfile('requirements.txt') and path.isfile('marvin-env/site-packages/__init__.py'):
 
     try:
+
+        try:
+            mkdir('marvin-data')
+        except FileExistsError:
+            print('Error marvin-data folder exists already might interfere with marvin data')
+
         contacts_path = path.join('data','contacts.json')
         settings_path = path.join('data','settings.json')
         contact_data = {"contacts":{},"nicks":{}}
