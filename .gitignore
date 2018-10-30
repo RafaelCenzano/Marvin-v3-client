@@ -1,4 +1,3 @@
-venv/
 *.pyc
 clear_pyc.sh
 marvin-env/site-packages/
