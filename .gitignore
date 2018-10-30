@@ -3,9 +3,9 @@
 
 # Marvin made virtual env
 # Hiding all packages
-marvin-env/site-packages/
-!marvin-env/site-packages/README.md
-!marvin-env/site-packages/__init__.py
+marvin-env/lib/site-packages/
+!marvin-env/lib/site-packages/README.md
+!marvin-env/lib/site-packages/__init__.py
 
 # Hide user Data
 data/contacts.json
