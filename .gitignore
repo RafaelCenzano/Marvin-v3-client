@@ -1,3 +1,6 @@
 venv/
 *.pyc
 clear_pyc.sh
+marvin-env/site-packages/
+!marvin-env/site-packages/README.md
+!marvin-env/site-packages/__init__.py
