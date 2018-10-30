@@ -8,5 +8,5 @@ marvin-env/lib/site-packages/
 !marvin-env/lib/site-packages/__init__.py
 
 # Hide user Data
-data/contacts.json
-data/settings.json
+marvin-data/contacts.json
+marvin-data/settings.json
