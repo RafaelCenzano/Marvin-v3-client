@@ -8,6 +8,7 @@ else:
     sys.path.insert(0, './marvin-env/lib/marvin-modules') # make env marvin-modules folder in path for pip installed libraries
 
 from flask import Flask, render_template, request, make_response, redirect, request
+import json
 
 # sMarvin UI created with flask
 
@@ -38,11 +39,11 @@ def dashboard():
 
 @app.route('/sendemail', methods=['GET']) # dashboard route
 def sendemail():
-        return 'Being Created'
+    return 'Being Created'
 
 @app.route('/contacts', methods=['GET']) # dashboard route
 def contacts():
-        return 'Being Created'
+    return render_template('contacts.html', options=['item','hello']) # render contacts.html for UI
 
 # Misc Routes
 
