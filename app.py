@@ -9,9 +9,7 @@ else:
 
 from flask import Flask, render_template, request, make_response, redirect, request
 
-'''
-Marvin UI created with flask
-'''
+# sMarvin UI created with flask
 
 app = Flask(__name__, template_folder='templates', static_folder='static')# declare flask app and point to html files for ui
 
