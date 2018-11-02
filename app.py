@@ -39,10 +39,6 @@ def dashboard():
 
 @app.route('/sendemail', methods=['GET']) # dashboard route
 def sendemail():
-    return 'Being Created'
-
-@app.route('/contacts', methods=['GET']) # dashboard route
-def contacts():
     return render_template('contacts.html', options=['item','hello']) # render contacts.html for UI
 
 # Misc Routes
