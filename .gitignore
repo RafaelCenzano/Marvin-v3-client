@@ -3,6 +3,8 @@
 
 # Marvin made virtual env
 # Hiding all packages
+marvin-env/bin/*
+!marvin-env/bin/README.md
 marvin-env/lib/site-packages/*
 !marvin-env/lib/site-packages/README.md
 !marvin-env/lib/site-packages/__init__.py
