@@ -1,11 +1,11 @@
 import sys
 from platform import system
 if system() == 'Windows':
-    sys.path.insert(0, './marvin-env\\lib\\site-packages') # make env sitepackages folder in path for pip installed libraries
-    sys.path.insert(0, './marvin-env\\lib\\marvin-modules') # make env marvin-modules folder in path for pip installed libraries
+    sys.path.insert(0, 'marvin-env\\lib\\site-packages') # make env sitepackages folder in path for pip installed libraries
+    sys.path.insert(0, 'marvin-env\\lib\\marvin-modules') # make env marvin-modules folder in path for pip installed libraries
 else:
-    sys.path.insert(0, './marvin-env/lib/site-packages') # make env sitepackages folder in path for pip installed libraries
-    sys.path.insert(0, './marvin-env/lib/marvin-modules') # make env marvin-modules folder in path for pip installed libraries
+    sys.path.insert(0, 'marvin-env/lib/site-packages') # make env sitepackages folder in path for pip installed libraries
+    sys.path.insert(0, 'marvin-modules') # make env marvin-modules folder in path for pip installed libraries
 
 from flask import Flask, render_template, request, make_response, redirect, request
 import json
