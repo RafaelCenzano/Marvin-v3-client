@@ -2,6 +2,7 @@
 from os import path, mkdir
 from os import system as terminal
 import json
+from platform import system
 
 if __name__ == '__main__' and path.isfile('app.py') and path.isfile('requirements.txt') and path.isfile('marvin-env/site-packages/__init__.py'):
 
@@ -37,9 +38,16 @@ if __name__ == '__main__' and path.isfile('app.py') and path.isfile('requirement
                     'MarkupSafe-1.0.dist-info','playsound-1.2.2.dist-info','PyAudio-0.2.11.dist-info',
                     'requests-2.20.0.dist-info','six-1.11.0.dist-info','SpeechRecognition-3.8.1.dist-info',
                     'urllib3-1.24.dist-info','Werkzeug-0.14.1.dist-info','word2number-1.1.dist-info']
-
-    for dirs in uneeded_dirs:
-        pass
+    try:
+        if system() == 'Windows':
+            remove_command = 'rmdir'
+        else:
+            remove_command = 'rm -r'
+        for dirs in uneeded_dirs:
+            mydir = path.join('marvin-env','lib','site-packages',dirs) # Format Paths
+            terminal(remove_command + mydir)
+    except Exception as e:
+        print('This error occured when trying to remove uneeded folders to save space' + str(e) + '. If this a problem please report the error to the github repository')
 
 else:
     print('Make sure to run this script in the Marvin-v3-client folder/directory')
