@@ -3,7 +3,7 @@ from os import path, mkdir, listdir, remove
 from os import system as terminal
 from json import dump
 from platform import system
-from shutil import rmtree
+from shutil import rmtree, move
 
 # Run code if file directly called and app.py, requirements.txt, and __init__.py in marvin-env exists to make many checks that setup.py called in right directory
 if __name__ == '__main__' and path.isfile('app.py') and path.isfile('requirements.txt') and path.isfile(path.join('marvin-env','lib','site-packages','__init__.py')):
@@ -83,6 +83,22 @@ if __name__ == '__main__' and path.isfile('app.py') and path.isfile('requirement
             print('deleted ' + folder + ' folder')
 
         # files and folders couln't be deleted
+    except Exception as e:
+        print('This error occured when trying to remove uneeded folders to save space' + str(e) + '. If this a problem please report the error to the github repository')
+
+    source = path.join('marvin-env','lib','site-packages','bin')
+    new_bin_folder = path.join('marvin-env','bin')
+
+    try:
+        files = listdir(source)
+
+        for f in files:
+            not_wanted_bin = path.join('marvin-env','lib','site-packages','bin',f)
+            move(not_wanted_bin, new_bin_folder)
+
+        rmtree(source)
+        print('deleted ' + source + ' folder')
+
     except Exception as e:
         print('This error occured when trying to remove uneeded folders to save space' + str(e) + '. If this a problem please report the error to the github repository')
 
