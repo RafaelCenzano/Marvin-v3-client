@@ -4,9 +4,21 @@ from os import system as terminal
 from json import dump
 from platform import system
 from shutil import rmtree, move
+import sys
 
 # Run code if file directly called and app.py, requirements.txt, and __init__.py in marvin-env exists to make many checks that setup.py called in right directory
 if __name__ == '__main__' and path.isfile('app.py') and path.isfile('requirements.txt') and path.isfile(path.join('marvin-env','lib','site-packages','__init__.py')):
+
+    try:
+        terminal('pip install tqdm==4.28.1 -t ' + path.join('marvin-env','lib','site-packages') + ' --upgrade')
+    except Exception as e:
+        print('There was an error: ' + str(e))
+
+    try:
+        sys.path.insert(0, path.join('marvin-env','lib','site-packages')) # make env sitepackages folder in path for pip installed libraries
+        from tqdm import tqdm
+    except Exception as e:
+        print('There was an error: ' + str(e))
 
     try:
         # Make marvin-data directory to store any json and data needed to run marvin
@@ -55,7 +67,7 @@ if __name__ == '__main__' and path.isfile('app.py') and path.isfile('requirement
                     'idna-2.7.dist-info','itsdangerous-1.1.0.dist-info','Jinja2-2.10.dist-info',
                     'MarkupSafe-1.0.dist-info','playsound-1.2.2.dist-info','PyAudio-0.2.11.dist-info',
                     'requests-2.20.0.dist-info','six-1.11.0.dist-info','SpeechRecognition-3.8.1.dist-info',
-                    'urllib3-1.24.1.dist-info','Werkzeug-0.14.1.dist-info']
+                    'urllib3-1.24.1.dist-info','Werkzeug-0.14.1.dist-info','tqdm-4.28.1.dist-info']
     try:
         # for all uneeded folders delete them
         print('\nDeleting uneeded folders\n')
@@ -65,7 +77,7 @@ if __name__ == '__main__' and path.isfile('app.py') and path.isfile('requirement
             folder = path.join('marvin-env','lib','site-packages',dirs)
 
             # remove all files in the directory
-            for files in listdir(folder):
+            for files in tqdm(listdir(folder)):
 
                 # file path inside folder
                 file_path = path.join(folder, files)
@@ -92,7 +104,7 @@ if __name__ == '__main__' and path.isfile('app.py') and path.isfile('requirement
     try:
         files = listdir(source)
 
-        for f in files:
+        for f in tqdm(files):
             not_wanted_bin = path.join('marvin-env','lib','site-packages','bin',f)
             move(not_wanted_bin, new_bin_folder)
 
