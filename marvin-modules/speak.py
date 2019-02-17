@@ -1,0 +1,2 @@
+def speak(tts):
+    pass
