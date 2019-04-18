@@ -11,5 +11,5 @@ PyAudio==0.2.11
 requests==2.20.0
 six==1.11.0
 SpeechRecognition==3.8.1
-urllib3==1.24.1
+urllib3==1.24.2
 word2number==1.1
