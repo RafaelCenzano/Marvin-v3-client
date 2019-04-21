@@ -8,7 +8,3 @@ marvin-env/bin/*
 marvin-env/lib/site-packages/*
 !marvin-env/lib/site-packages/README.md
 !marvin-env/lib/site-packages/__init__.py
-
-# Hide user Data
-marvin-data/contacts.json
-marvin-data/settings.json
