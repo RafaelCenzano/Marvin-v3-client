@@ -121,8 +121,7 @@ if __name__ == '__main__' and path.isfile('app.py') and path.isfile(
         print('deleted ' + source + ' folder')
 
     except Exception as e:
-        print(
-            'This error occured when trying to remove uneeded folders to save space {e}. If this a problem please report the error to the github repository')
+        print(f'This error occured when trying to remove uneeded folders to save space {e}. If this a problem please report the error to the github repository')
 
     # file ran from outside marvin folder which causes path problems for file
     # creation
