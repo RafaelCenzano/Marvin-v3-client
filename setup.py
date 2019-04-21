@@ -1,4 +1,4 @@
-#Imports
+# Imports
 from os import path, mkdir, listdir, remove
 from os import system as terminal
 from json import dump
@@ -6,68 +6,75 @@ from platform import system
 from shutil import rmtree, move
 import sys
 
-# Run code if file directly called and app.py, requirements.txt, and __init__.py in marvin-env exists to make many checks that setup.py called in right directory
-if __name__ == '__main__' and path.isfile('app.py') and path.isfile('requirements.txt') and path.isfile(path.join('marvin-env','lib','site-packages','__init__.py')):
+# Run code if file directly called and app.py, requirements.txt, and
+# __init__.py in marvin-env exists to make many checks that setup.py
+# called in right directory
+if __name__ == '__main__' and path.isfile('app.py') and path.isfile(
+        'requirements.txt') and path.isfile(path.join('marvin-env', 'lib', 'site-packages', '__init__.py')):
 
     try:
-        terminal('pip install tqdm==4.28.1 -t ' + path.join('marvin-env','lib','site-packages') + ' --upgrade')
+        terminal(
+            'pip install tqdm==4.28.1 -t ' +
+            path.join(
+                'marvin-env',
+                'lib',
+                'site-packages') +
+            ' --upgrade')
     except Exception as e:
-        print('There was an error: ' + str(e))
+        print(f'There was an error: {e}')
 
     try:
-        sys.path.insert(0, path.join('marvin-env','lib','site-packages')) # make env sitepackages folder in path for pip installed libraries
+        # make env sitepackages folder in path for pip installed libraries
+        sys.path.insert(0, path.join('marvin-env', 'lib', 'site-packages'))
         from tqdm import tqdm
     except Exception as e:
-        print('There was an error: ' + str(e))
+        print(f'There was an error: {e}')
 
     try:
-        # Make marvin-data directory to store any json and data needed to run marvin
+        # Make marvin-data directory to store any json and data needed to run
+        # marvin
         mkdir('marvin-data')
         print('\nmarvin-data folder created for marvin data\n')
 
-        # If folder exsists prompt user that this can potentially interfere with marvin code
+        # If folder exsists prompt user that this can potentially interfere
+        # with marvin code
     except FileExistsError:
         print('Error marvin-data folder exists already might interfere with marvin data')
 
     try:
-        # create any os paths for json files
-        contacts_path = path.join('marvin-data','contacts.json')
-        settings_path = path.join('marvin-data','settings.json')
-
-        # create json data for the json files
-        contact_data = {"contacts":{},"nicks":{}}
-        settings_data = {"settings":{"voice":"female","UI":"enabled"}}
-
-        # create json files
-        with open(settings_path, 'w') as newjsonfile:
-            dump(settings_data, newjsonfile)
-        print('\nCreate settings.json files')
-
-        with open(contacts_path, 'w') as newjsonfile1:
-            dump(contact_data, newjsonfile1)
-        print('Create contacts.json files\n')
-
-        # If there is an error when creating data files
-    except Exception as e:
-        print('We ran into a problem\nPlease report this issue ' + str(e) + '\nFiles couldn\'t be created properly')
-
-    try:
         # install required libraries into marvin-env
         print('\nInstalling needed libraries\n')
-        terminal('pip install -r requirements.txt -t ' + path.join('marvin-env','lib','site-packages') + ' --upgrade')
+        terminal(
+            'pip install -r requirements.txt -t ' +
+            path.join(
+                'marvin-env',
+                'lib',
+                'site-packages') +
+            ' --upgrade')
 
         # dependencies couldn't be installed
     except Exception as e:
-        print('We ran into a problem\nPlease report this issue ' + str(e) + '\nFiles couldn\'t be installed properly')
+        print(f'We ran into a problem\nPlease report this issue {e} \nFiles couldn\'t be installed properly')
 
         # make list full of uneeded folders created from pip installs
 
-    uneeded_dirs = ['beautifulsoup4-4.6.3.dist-info','bs4-0.0.1.dist-info',
-                    'certifi-2018.10.15.dist-info','chardet-3.0.4.dist-info','Click-7.0.dist-info',
-                    'gTTS_token-1.1.2.dist-info','gTTS-2.0.1.dist-info','idna-2.7.dist-info',
-                    'playsound-1.2.2.dist-info','PyAudio-0.2.11.dist-info',
-                    'requests-2.20.0.dist-info','six-1.11.0.dist-info','SpeechRecognition-3.8.1.dist-info',
-                    'urllib3-1.24.1.dist-info','tqdm-4.28.1.dist-info''word2number-1.1.dist-info',]
+    uneeded_dirs = [
+        'SpeechRecognition-3.8.1.dist-info',
+        'word2number-1.1.dist-info',
+        'beautifulsoup4-4.6.3.dist-info',
+        'chardet-3.0.4.dist-info',
+        'certifi-2018.10.15.dist-info',
+        'idna-2.7.dist-info',
+        'gTTS_token-1.1.2.dist-info',
+        'Click-7.0.dist-info',
+        'playsound-1.2.2.dist-info',
+        'gTTS-2.0.1.dist-info',
+        'requests-2.20.0.dist-info',
+        'six-1.11.0.dist-info',
+        'urllib3-1.24.1.dist-info',
+        'tqdm-4.28.1.dist-info',
+        'PyAudio-0.2.11.dist-info',
+        'bs4-0.0.1.dist-info']
 
     try:
         # for all uneeded folders delete them
@@ -75,7 +82,7 @@ if __name__ == '__main__' and path.isfile('app.py') and path.isfile('requirement
         for dirs in tqdm(uneeded_dirs):
 
             # create path to folder to delete
-            folder = path.join('marvin-env','lib','site-packages',dirs)
+            folder = path.join('marvin-env', 'lib', 'site-packages', dirs)
 
             # remove all files in the directory
             for files in listdir(folder):
@@ -97,24 +104,27 @@ if __name__ == '__main__' and path.isfile('app.py') and path.isfile('requirement
 
         # files and folders couln't be deleted
     except Exception as e:
-        print('This error occured when trying to remove uneeded folders to save space' + str(e) + '. If this a problem please report the error to the github repository')
+        print(f'This error occured when trying to remove uneeded folders to save space {e}. If this a problem please report the error to the github repository')
 
-    source = path.join('marvin-env','lib','site-packages','bin')
-    new_bin_folder = path.join('marvin-env','bin')
+    source = path.join('marvin-env', 'lib', 'site-packages', 'bin')
+    new_bin_folder = path.join('marvin-env', 'bin')
 
     try:
         files = listdir(source)
 
         for f in tqdm(files):
-            not_wanted_bin = path.join('marvin-env','lib','site-packages','bin',f)
+            not_wanted_bin = path.join(
+                'marvin-env', 'lib', 'site-packages', 'bin', f)
             move(not_wanted_bin, new_bin_folder)
 
         rmtree(source)
         print('deleted ' + source + ' folder')
 
     except Exception as e:
-        print('This error occured when trying to remove uneeded folders to save space' + str(e) + '. If this a problem please report the error to the github repository')
+        print(
+            'This error occured when trying to remove uneeded folders to save space {e}. If this a problem please report the error to the github repository')
 
-    # file ran from outside marvin folder which causes path problems for file creation
+    # file ran from outside marvin folder which causes path problems for file
+    # creation
 else:
     print('Make sure to run this script in the Marvin-v3-client folder/directory')
