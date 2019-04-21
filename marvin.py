@@ -1,8 +1,9 @@
+from marvin - modules.gui.gui_manager import gui
 import sys
 from os import path
-sys.path.insert(0, path.join('marvin-env','lib','site-packages')) # make env sitepackages folder in path for pip installed libraries
+# make env sitepackages folder in path for pip installed libraries
+sys.path.insert(0, path.join('marvin-env', 'lib', 'site-packages'))
 
-from marvin-modules.gui.gui_manager import gui
 
 gui.mainloop()
 
