@@ -35,7 +35,11 @@ def mute_system_audio():
 	elif OS == 'Linux':
 		os_command = 'amixer set Master mute'
 	else:
+		os_command = None
 		print('No support for your Operating System. (No Windows yet)')
+
+	if os_command != None:
+		terminal(os_command)
 
 def unmute_system_audio():
 	if OS == 'Darwin':
@@ -43,4 +47,8 @@ def unmute_system_audio():
 	elif OS == 'Linux':
 		os_command = 'amixer set Master unmute'
 	else:
+		os_command = None
 		print('No support for your Operating System. (No Windows yet)')
+
+	if os_command != None:
+		terminal(os_command)
