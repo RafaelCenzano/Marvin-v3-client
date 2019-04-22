@@ -1,4 +1,4 @@
-from marvin - modules.gui.gui_manager import gui
+from modules.gui.gui_manager import gui
 import sys
 from os import path
 # make env sitepackages folder in path for pip installed libraries
