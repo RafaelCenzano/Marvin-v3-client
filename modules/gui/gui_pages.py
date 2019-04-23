@@ -14,7 +14,7 @@ class StartPage(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-        label = tk.Label(self, text="Marvin Start Page", font=LARGE_FONT)
+        label = tk.Label(self, text='Marvin Start Page', font=LARGE_FONT, fg='#e2e2e2', bg='#191919')
         label.pack(pady=10, padx=10)
 
         button1 = ttk.Button(self, text='Settings',
