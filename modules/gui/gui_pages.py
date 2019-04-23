@@ -1,11 +1,12 @@
 try:
-    # for Python2
-    import Tkinter as tk
-    import ttk
-except ImportError:
     # for Python3
     import tkinter as tk
     from tkinter import ttk
+
+except ImportError:
+    # for Python2
+    import Tkinter as tk
+    import ttk
 
 LARGE_FONT = ("Verdana", 30)
 
