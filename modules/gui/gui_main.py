@@ -1,9 +1,10 @@
 try:
-    # for Python2
-    import Tkinter as tk
-except ImportError:
     # for Python3
     import tkinter as tk
+    
+except ImportError:
+    # for Python2
+    import Tkinter as tk
 
 from modules.gui.gui_pages import *
 
