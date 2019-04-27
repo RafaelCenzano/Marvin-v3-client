@@ -8,3 +8,4 @@ marvin-env/bin/*
 marvin-env/lib/site-packages/*
 !marvin-env/lib/site-packages/README.md
 !marvin-env/lib/site-packages/__init__.py
+marvin-env/path.py
