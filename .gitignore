@@ -1,6 +1,8 @@
 # Hide files that are made by python
 *.pyc
 
+*.DS_Store
+
 # Marvin made virtual env
 # Hiding all packages
 marvinenv/bin/*
