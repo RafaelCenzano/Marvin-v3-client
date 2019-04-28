@@ -1,8 +1,7 @@
 # Imports
 from os import path, mkdir, listdir, remove, getcwd
+from platform import system as platform
 from os import system as terminal
-from json import dump
-from platform import system
 from shutil import rmtree, move
 import sys
 
@@ -48,7 +47,7 @@ if __name__ == '__main__' and path.isfile('marvin.py') and path.isfile(
         # install required libraries into marvin-env
         print('\nInstalling needed libraries\n')
         marvin_env = path.join('marvinenv','lib','sitepackages')
-        terminal(f'pip install  -r requirements.txt -t {marvin_env} --upgrade')
+        terminal(f'pip3 install  -r requirements.txt -t {marvin_env}')
 
         # dependencies couldn't be installed
     except Exception as e:

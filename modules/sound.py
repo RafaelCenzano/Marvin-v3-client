@@ -1,5 +1,5 @@
 from os import system as terminal
-from platform import system as ostype
+from platform import system as platform
 
 ## NOTES ##
 # Sounds, Terminal Control
@@ -27,7 +27,7 @@ from platform import system as ostype
 # WINDOWS
 # NONE
 
-OS = ostype()
+OS = platform()
 
 def mute_system_audio():
 	if OS == 'Darwin':
