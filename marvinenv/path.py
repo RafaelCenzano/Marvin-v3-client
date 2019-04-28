@@ -1,0 +1,1 @@
+marvin_path = /Users/rafael/Documents/Programming/marvin/Marvin-v3-client
