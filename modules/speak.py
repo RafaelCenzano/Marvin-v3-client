@@ -5,8 +5,9 @@ from os import system as terminal
 from os import path
 from marvinenv.path import marvin_path
 
-def say(tts):
+def say(tts, speak_type=2):
     check_connection = internet_on()
+    print(tts)
     if check_connection == True and speak_type == 1:
     	gtts_speak(tts)
     elif check_connection == False and speak_type == 2:
