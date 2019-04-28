@@ -7,7 +7,7 @@ from shutil import rmtree, move
 import sys
 
 try:
-    confirm = input('\n\n\n\nConfirm that you want to run steup.py. y/n? ').lower()
+    confirm = input('\n\n\n\nConfirm that you want to run setup.py. y/n? ').lower()
 except:
     print('\nNot python 3\n')
     sys.exit(0)
@@ -17,6 +17,7 @@ else:
     print('\nsetup.py cancled by user\n')
     sys.exit(0)
 
+tqdm_here = False
 
 # Run code if file directly called and app.py, requirements.txt, and
 # __init__.py in marvin-env exists to make many checks that setup.py
@@ -42,17 +43,6 @@ if __name__ == '__main__' and path.isfile('marvin.py') and path.isfile(
 
     except Exception as e:
         print(f'There was an error when working with Homebrew: {e}')
-
-    try:
-        marvin_env = path.join('marvinenv','lib','sitepackages')
-        terminal(f'pip install tqdm==4.31.1 --target=={marvin_env} --upgrade')
-    except Exception as e:
-        print(f'There was an error when installing tqdm: {e}')
-
-    try:
-        from marvinenv.lib.sitepackages.tqdm import tqdm
-    except Exception as e:
-        print(f'There was an error import tqdm: {e}')
 
     try:
         # install required libraries into marvin-env
@@ -87,7 +77,7 @@ if __name__ == '__main__' and path.isfile('marvin.py') and path.isfile(
     try:
         # for all uneeded folders delete them
         print('\nDeleting uneeded folders\n')
-        for dirs in tqdm(uneeded_dirs):
+        for dirs in uneeded_dirs:
 
             # create path to folder to delete
             folder = path.join('marvinenv', 'lib', 'sitepackages', dirs)
@@ -120,9 +110,8 @@ if __name__ == '__main__' and path.isfile('marvin.py') and path.isfile(
     try:
         files = listdir(source)
 
-        for f in tqdm(files):
-            not_wanted_bin = path.join(
-                'marvinenv', 'lib', 'sitepackages', 'bin', f)
+        for f in files:
+            not_wanted_bin = path.join('marvinenv', 'bin', f)
             move(not_wanted_bin, new_bin_folder)
 
         rmtree(source)
@@ -134,7 +123,7 @@ if __name__ == '__main__' and path.isfile('marvin.py') and path.isfile(
     try:
         absolute_path = getcwd()
         path_file = open(path.join('marvinenv','path.py'), 'w+')
-        path_file.write(f'marvin_path = {absolute_path}')
+        path_file.write(f'marvin_path = \'{absolute_path}\'')
         path_file.close()
     except Exception as e:
         print(f'This error occured when trying to save data: {e}. If this a problem please report the error to the github repository')
