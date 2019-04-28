@@ -40,6 +40,14 @@ if __name__ == '__main__' and path.isfile('marvin.py') and path.isfile(
             else:
                 print('There will be an error later when installing pyaudio. Read more about port audio here: http://www.portaudio.com/')
 
+        else:
+            allow_portaudio_install = input('Allow the setup.py to install portaudio using Homebrew? y/n? ').lower()
+            if allow_portaudio_install == 'y' or allow_portaudio_install == 'yes' or allow_portaudio_install == 'true':
+                print('\n\nInstalling portaudio from Homebrew\n\n')
+                terminal('brew install portaudio')
+            else:
+                print('There will be an error later when installing pyaudio. Read more about port audio here: http://www.portaudio.com/')
+
     except Exception as e:
         print(f'There was an error when working with Homebrew: {e}')
 
@@ -68,8 +76,6 @@ if __name__ == '__main__' and path.isfile('marvin.py') and path.isfile(
         'gTTS-2.0.1.dist-info',
         'requests-2.20.0.dist-info',
         'six-1.11.0.dist-info',
-        'urllib3-1.24.1.dist-info',
-        'tqdm-4.28.1.dist-info',
         'PyAudio-0.2.11.dist-info',
         'bs4-0.0.1.dist-info']
 
@@ -102,8 +108,8 @@ if __name__ == '__main__' and path.isfile('marvin.py') and path.isfile(
         # files and folders couln't be deleted
     except Exception as e:
         print(f'This error occured when trying to remove uneeded folders to save space: {e}. If this a problem please report the error to the github repository')
-
-    source = path.join('marvinenv', 'lib', 'sitepackages', 'bin')
+    '''
+    source = path.join('marvinenv', 'lib', 'sitepackages')
     new_bin_folder = path.join('marvinenv', 'bin')
 
     try:
@@ -118,7 +124,7 @@ if __name__ == '__main__' and path.isfile('marvin.py') and path.isfile(
 
     except Exception as e:
         print(f'This error occured when trying to remove uneeded folders to save space: {e}. If this a problem please report the error to the github repository')
-
+    '''
     try:
         absolute_path = getcwd()
         path_file = open(path.join('marvinenv','path.py'), 'w+')
