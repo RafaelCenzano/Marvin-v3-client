@@ -1,0 +1,1 @@
+from platform import system as platform
