@@ -2,6 +2,8 @@
 
 Python virtual assistant. Version 3.
 
+#### Note this program doesn't require a virtualenv it creates its own using the setup.py
+
 ## Setup
 
 Clone the repository and enter it
