@@ -2,9 +2,6 @@
 
 Python virtual assistant. Version 3.
 
-[![star this repo](http://githubbadges.com/star.svg?user=Marvin-Virtual-Assstant&repo=Marvin-v3-client&style=default)](https://github.com/Marvin-Virtual-Assistant/Marvin-v3-client)
-[![fork this repo](http://githubbadges.com/fork.svg?user=Marvin-Virtual-Assstant&repo=Marvin-v3-client&style=default)](https://github.com/Marvin-Virtual-Assistant/Marvin-v3-client/fork)
-
 ## Setup
 
 Clone the repository and enter it
