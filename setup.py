@@ -58,8 +58,8 @@ if __name__ == '__main__' and path.isfile('marvin.py') and path.isfile(
         print(f'This error occured when trying to save data: {e}. If this a problem please report the error to the github repository')
 
     try:
-        install_requirements = input('\nAllow setup.py to install all required libraries? librariescan be seen in requirements.txt. y/n? ').lower()
-        if install_requirements == 'y' or install_requirements == 'yes' or install_requirements == 'true'
+        install_requirements = input('\nAllow setup.py to install all required libraries? libraries can be seen in requirements.txt. y/n? ').lower()
+        if install_requirements == 'y' or install_requirements == 'yes' or install_requirements == 'true':
             # install required libraries into marvin-env
             print('\nInstalling needed libraries\n')
             marvin_env = path.join('marvinenv','lib','sitepackages')
