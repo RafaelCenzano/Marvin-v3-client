@@ -1,3 +1,4 @@
-from modeules.speak import say
+from modules.speak import say
 
-say('Testing text to speak system')
+def test_tts():
+	say('Testing text to speech system', 2)
