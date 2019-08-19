@@ -60,7 +60,7 @@ if __name__ == '__main__' and path.isfile('marvin.py') and path.isfile(
     try:
         install_requirements = input('\nAllow setup.py to install all required libraries? libraries can be seen in requirements.txt. y/n? ').lower()
         if install_requirements == 'y' or install_requirements == 'yes' or install_requirements == 'true':
-            # install required libraries into marvin-env
+            # Install required libraries into marvin-env
             print('\nInstalling needed libraries\n')
             marvin_env = path.join('marvinenv','lib','sitepackages')
             terminal(f'pip3 install  -r requirements.txt -t {marvin_env} --upgrade')
@@ -68,12 +68,11 @@ if __name__ == '__main__' and path.isfile('marvin.py') and path.isfile(
             print('Program will not work without needed libraries')
             sys.exit(0)
 
-        # dependencies couldn't be installed
+        # Dependencies couldn't be installed
     except Exception as e:
         print(f'We ran into a problem\nPlease report this issue: {e} \nFiles couldn\'t be installed properly')
 
-        # make list full of uneeded folders created from pip installs
-
+    # List of uneeded folders created from pip installs
     uneeded_dirs = [
         'SpeechRecognition-3.8.1.dist-info',
         'word2number-1.1.dist-info',
@@ -105,38 +104,38 @@ if __name__ == '__main__' and path.isfile('marvin.py') and path.isfile(
                 # file path inside folder
                 file_path = path.join(folder, files)
 
-                # if file exists delete it
+                # file exists delete it
                 if path.isfile(file_path):
                     remove(file_path)
 
-                # if dir exists delete it
+                # dir exists delete it
                 elif path.isdir(file_path):
                     rmtree(file_path)
 
-            # finally delete folder
+            # Delete folder
             rmtree(folder)
             print('deleted ' + folder + ' folder')
 
-        # files and folders couln't be deleted
+    # Files and folders couln't be deleted
     except Exception as e:
         print(f'This error occured when trying to remove uneeded folders to save space: {e}. If this a problem please report the error to the github repository')
-    '''
-    source = path.join('marvinenv', 'lib', 'sitepackages')
+    
+    bin_folder = path.join('marvinenv', 'lib', 'sitepackages', 'bin')
     new_bin_folder = path.join('marvinenv', 'bin')
 
     try:
         files = listdir(source)
 
         for f in files:
-            not_wanted_bin = path.join('marvinenv', 'bin', f)
-            move(not_wanted_bin, new_bin_folder)
+            not_wanted_bin = path.join(source, f)
+            move(not_wanted_bin, new_bin_folder) 
 
         rmtree(source)
         print('deleted ' + source + ' folder')
 
     except Exception as e:
         print(f'This error occured when trying to remove uneeded folders to save space: {e}. If this a problem please report the error to the github repository')
-    '''
+    
 
     # file ran from outside marvin folder which causes path problems for file
     # creation
